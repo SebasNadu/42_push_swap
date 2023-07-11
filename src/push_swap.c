@@ -6,64 +6,86 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:45:28 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/08 00:41:11 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/11 14:50:48 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// next step merge sort
-
-void	init_data(t_data *data)
+t_stack	*get_node(t_stack *stack, int index)
 {
-	(*data).stack_a = NULL;
-	(*data).stack_b = NULL;
-	(*data).a_size = 0;
-	(*data).b_size = 0;
+	int	i;
+
+	i = 0;
+	while (i < index)
+	{
+		stack = stack->next;
+		++i;
+	}
+	return (stack);
 }
 
-int	append_node(t_data *data, int nbr, int index)
+t_stack	*merge(t_stack *left, t_stack *right)
 {
-	t_stack	*new;
-	t_stack	*stack;
+	t_stack	*result;
 
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		return (0);
-	new->data = nbr;
-	new->next = NULL;
-	new->u_index = index;
-	if (!(*data).stack_a)
-		(*data).stack_a = new;
+	if (!left)
+		return (right);
+	if (!right)
+		return (left);
+	if (left->data <= right->data)
+	{
+		result = left;
+		result->next = merge(left->next, right);
+	}
 	else
 	{
-		stack = (*data).stack_a;
-		while (stack->next)
-			stack = stack->next;
-		stack->next = new;
+		result = right;
+		result->next = merge(left, right->next);
 	}
-	++(*data).a_size;
-	return (1);
+	return (result);
 }
 
-void	stack_filler(t_data *data, char **av, int is_a_dup)
+void	merge_sort(t_stack **stack, int size)
 {
-	long	nbr;
+	t_stack	*left;
+	t_stack	*right;
+
+	if (size <= 1)
+		return ;
+	left = *stack;
+	right = get_node(*stack, size / 2);
+	left->prev = NULL;
+	right->prev->next = NULL;
+	right->prev = NULL;
+	merge_sort(&left, size / 2);
+	merge_sort(&right, size - (size / 2));
+	*stack = merge(left, right);
+	(*stack)->prev = NULL;
+}
+
+void	set_o_index(t_stack *stack)
+{
 	int		i;
 
 	i = 0;
-	while (av[i])
+	while (stack)
 	{
-		if (!check_if_int(av[i]))
-			error_free(data, av, is_a_dup);
-		nbr = ft_atol(av[i]);
-		if (nbr < INT_MIN || nbr > INT_MAX)
-			error_free(data, av, is_a_dup);
-		if (check_if_rep(*data, (int)nbr))
-			error_free(data, av, is_a_dup);
-		if (!append_node(data, (int)nbr, i))
-			error_free(data, av, is_a_dup);
+		stack->o_index = i;
+		stack = (stack)->next;
 		++i;
+	}
+}
+
+// next step sort by u_index
+void	sort_by_uindex(t_stack *stack, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+
 	}
 }
 
@@ -73,6 +95,9 @@ void	ft_stackiter(t_stack *stack, void (*f)(int, int))
 		return ;
 	while (stack)
 	{
+		write(1, "\nindex: ", 8);
+		f(stack->o_index, 1);
+		write(1, " nbr: ", 6);
 		f(stack->data, 1);
 		stack = stack->next;
 	}
@@ -96,6 +121,9 @@ int	main(int ac, char **av)
 	stack_filler(&data, av + 1, ac == 2);
 	if (ac == 2)
 		free_vdup(av);
+	merge_sort(&data.stack_a, data.a_size);
+	set_o_index(data.stack_a);
+	sort_by_uindex(data.stack_a, data.a_size);
 	ft_stackiter(data.stack_a, (*ft_putnbr_fd));
 	exit_free(&data);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/08 00:39:45 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/11 14:53:34 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <limits.h>
 # include "../libft/includes/libft.h"
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -46,5 +47,9 @@ int		check_if_rep(t_data data, int nbr);
 void	error_free(t_data *data, char **av, int is_a_dup);
 void	free_stack(t_stack *stack);
 void	free_vdup(char **av);
+
+// stack_init
+void	init_data(t_data *data);
+void	stack_filler(t_data *data, char **av, int is_a_dup);
 
 #endif

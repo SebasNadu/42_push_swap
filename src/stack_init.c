@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:50:30 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/11 14:53:46 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/12 23:35:09 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,36 @@ void	stack_filler(t_data *data, char **av, int is_a_dup)
 			error_free(data, av, is_a_dup);
 		++i;
 	}
+}
+
+void	set_o_index(t_stack *stack, int size)
+{
+	int		i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = stack;
+	while (i < size)
+	{
+		tmp->o_index = i;
+		tmp = tmp->next;
+		++i;
+	}
+}
+
+void	set_doub_link(t_stack *stack, int size)
+{
+	t_stack	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = stack;
+	while (i < size - 1)
+	{
+		tmp->next->prev = tmp;
+		tmp = tmp->next;
+		++i;
+	}
+	stack->prev = tmp;
+	tmp->next = stack;
 }

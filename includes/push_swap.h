@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/12 23:04:58 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/12 23:32:50 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,13 @@ void	free_vdup(char **av);
 // stack_init
 void	init_data(t_data *data);
 void	stack_filler(t_data *data, char **av, int is_a_dup);
+void	set_o_index(t_stack *stack, int size);
+void	set_doub_link(t_stack *stack, int size);
+
+// merge_sort
+void	merge_sort(t_stack **stack, int size,
+			t_stack *(*f_merge)(t_stack *, t_stack *));
+t_stack	*merge(t_stack *left, t_stack *right);
+t_stack	*merge_by_uindex(t_stack *left, t_stack *right);
 
 #endif

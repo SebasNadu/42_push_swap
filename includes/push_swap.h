@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/11 14:53:34 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/12 23:04:58 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		check_if_rep(t_data data, int nbr);
 
 // error_free
 void	error_free(t_data *data, char **av, int is_a_dup);
-void	free_stack(t_stack *stack);
+void	free_stack(t_stack *stack, int size);
 void	free_vdup(char **av);
 
 // stack_init

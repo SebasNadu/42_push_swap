@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:23:50 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/08 00:26:14 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/12 23:06:46 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,27 @@ void	free_vdup(char **av)
 	free(av);
 }
 
-void	free_stack(t_stack *stack)
+void	free_stack(t_stack *stack, int size)
 {
 	t_stack	*tmp;
+	int		i;
 
 	if (!stack)
 		return ;
-	while (stack)
+	i = 0;
+	while (i < size)
 	{
 		tmp = stack;
 		stack = stack->next;
 		free(tmp);
+		++i;
 	}
 }
 
 void	error_free(t_data *data, char **av, int isa_duplicate)
 {
 	if ((*data).stack_a)
-		free_stack((*data).stack_a);
+		free_stack((*data).stack_a, (*data).a_size);
 	if (isa_duplicate)
 		free_vdup(av);
 	ft_putstr_fd("Error\n", 2);

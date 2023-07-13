@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/12 23:32:50 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/13 12:48:23 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void	merge_sort(t_stack **stack, int size,
 			t_stack *(*f_merge)(t_stack *, t_stack *));
 t_stack	*merge(t_stack *left, t_stack *right);
 t_stack	*merge_by_uindex(t_stack *left, t_stack *right);
+
+// stack_operations
+void	operators_parser(t_data *data, char *msg);
 
 #endif

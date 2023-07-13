@@ -1,44 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations.c                                 :+:      :+:    :+:   */
+/*   operations_parsers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 11:18:57 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/13 15:21:32 by sebasnadu        ###   ########.fr       */
+/*   Created: 2023/07/13 15:33:43 by sebasnadu         #+#    #+#             */
+/*   Updated: 2023/07/13 15:34:47 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap(t_stack **stack)
-{
-	t_stack	*tmp;
-
-	if (!(*stack) || !(*stack)->next)
-		return ;
-	tmp = (*stack)->next;
-	(*stack)->next = tmp->next;
-	tmp->prev = (*stack)->prev;
-	(*stack)->prev = tmp;
-	tmp->next->prev = (*stack);
-	tmp->next = (*stack);
-	tmp->prev->next = tmp;
-	(*stack) = tmp;
-}
-
-void	rotate(t_stack **stack, int is_rev)
-{
-	if (!(*stack) || !(*stack)->prev || !(*stack)->next)
-		return ;
-	if (is_rev)
-		*stack = (*stack)->prev;
-	else
-		*stack = (*stack)->next;
-}
-
-void	swap_parser(t_data *data, char *msg)
+static void	swap_parser(t_data *data, char *msg)
 {
 	if (ft_strncmp(msg, "sa", 2) == 0)
 	{
@@ -60,7 +34,7 @@ void	swap_parser(t_data *data, char *msg)
 	}
 }
 
-void	rotate_parser(t_data *data, char *msg)
+static void	rotate_parser(t_data *data, char *msg)
 {
 	if (ft_strncmp(msg, "ra", 3) == 0 || ft_strncmp(msg, "rra", 3) == 0)
 	{
@@ -82,38 +56,7 @@ void	rotate_parser(t_data *data, char *msg)
 	}
 }
 
-void	push(t_stack **dest, t_stack **src, size_t *dest_size, size_t *src_size)
-{
-	t_stack	*node_to_push;
-
-	if (*src == NULL)
-		return ;
-	node_to_push = *src;
-	*src = (*src)->next;
-	if (*src)
-	{
-		(*src)->prev = node_to_push->prev;
-		node_to_push->prev->next = *src;
-	}
-	if (*dest == NULL)
-	{
-		node_to_push->next = NULL;
-		node_to_push->prev = NULL;
-		*dest = node_to_push;
-	}
-	else
-	{
-		node_to_push->next = *dest;
-		node_to_push->prev = (*dest)->prev;
-		(*dest)->prev->next = node_to_push;
-		(*dest)->prev = node_to_push;
-		*dest = node_to_push;
-	}
-	*src_size -= 1;
-	*dest_size += 1;
-}
-
-void	push_parser(t_data *data, char *msg)
+static void	push_parser(t_data *data, char *msg)
 {
 	if (ft_strncmp(msg, "pa", 2) == 0)
 		push(&(*data).stack_a, &(*data).stack_b,
@@ -123,7 +66,7 @@ void	push_parser(t_data *data, char *msg)
 			&(*data).b_size, &(*data).a_size);
 }
 
-void	operators_parser(t_data *data, char *msg)
+void	operations_parser(t_data *data, char *msg)
 {
 	if (ft_strncmp(msg, "sa", 2) == 0 || ft_strncmp(msg, "sb", 2) == 0
 		|| ft_strncmp(msg, "ss", 2) == 0)

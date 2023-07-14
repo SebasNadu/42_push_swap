@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/13 15:36:58 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/14 23:01:52 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ long	ft_atol(char *str);
 
 // checks
 int		check_if_int(char *str);
-int		check_if_rep(t_data data, int nbr);
+int		check_if_dup(t_data data, int nbr);
+int		check_if_sorted(t_stack *stack, int size);
 
 // error_free
 void	error_free(t_data *data, char **av, int is_a_dup);
@@ -67,6 +68,9 @@ void	operations_parser(t_data *data, char *msg);
 void	push(t_stack **dest, t_stack **src, size_t *dest_size,
 			size_t *src_size);
 void	rotate(t_stack **stack, int is_rev);
-void	swap(t_stack **stack);
+void	swap(t_stack **stack, int size);
+
+// push_swap
+void	push_swap(t_data *data);
 
 #endif

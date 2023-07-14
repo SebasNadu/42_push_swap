@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:50:30 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/12 23:35:09 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/14 22:21:35 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ static int	append_node(t_data *data, int nbr, int index)
 		stack = (*data).stack_a;
 		while (stack->next)
 			stack = stack->next;
+		new->prev = stack;
 		stack->next = new;
-		stack->next->prev = stack;
 	}
-	++(*data).a_size;
+	(*data).a_size += 1;
 	return (1);
 }
 
@@ -59,7 +59,7 @@ void	stack_filler(t_data *data, char **av, int is_a_dup)
 		nbr = ft_atol(av[i]);
 		if (nbr < INT_MIN || nbr > INT_MAX)
 			error_free(data, av, is_a_dup);
-		if (check_if_rep(*data, (int)nbr))
+		if (check_if_dup(*data, (int)nbr))
 			error_free(data, av, is_a_dup);
 		if (!append_node(data, (int)nbr, i))
 			error_free(data, av, is_a_dup);
@@ -84,17 +84,22 @@ void	set_o_index(t_stack *stack, int size)
 
 void	set_doub_link(t_stack *stack, int size)
 {
-	t_stack	*tmp;
+	t_stack	*current;
+	t_stack	*next_node;
 	int		i;
 
 	i = 0;
-	tmp = stack;
-	while (i < size - 1)
+	current = stack;
+	next_node = stack->next;
+	while (next_node != stack && i < size - 1)
 	{
-		tmp->next->prev = tmp;
-		tmp = tmp->next;
+		next_node->prev = current;
+		current->next = next_node;
+		current = next_node;
+		next_node = next_node->next;
 		++i;
 	}
-	stack->prev = tmp;
-	tmp->next = stack;
+	next_node = stack;
+	next_node->prev = current;
+	current->next = next_node;
 }

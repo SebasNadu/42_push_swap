@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:45:28 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/13 15:32:46 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/14 23:37:35 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,16 @@ int	main(int ac, char **av)
 	stack_filler(&data, av + 1, ac == 2);
 	if (ac == 2)
 		free_vdup(av);
-	merge_sort(&data.stack_a, data.a_size, merge);
-	set_o_index(data.stack_a, data.a_size);
-	set_doub_link(data.stack_a, data.a_size);
-	merge_sort(&data.stack_a, data.a_size, merge_by_uindex);
-	set_doub_link(data.stack_a, data.a_size);
+	if (!check_if_sorted(data.stack_a, data.a_size))
+	{
+		merge_sort(&data.stack_a, data.a_size, merge);
+		set_o_index(data.stack_a, data.a_size);
+		set_doub_link(data.stack_a, data.a_size);
+		merge_sort(&data.stack_a, data.a_size, merge_by_uindex);
+		set_doub_link(data.stack_a, data.a_size);
+		push_swap(&data);
+	}
 	ft_stackiter(data.stack_a, data.a_size, (*ft_putnbr_fd));
-	operations_parser(&data, "pb");
-	ft_stackiter(data.stack_a, data.a_size, (*ft_putnbr_fd));
-	ft_stackiter(data.stack_b, data.b_size, (*ft_putnbr_fd));
 	exit_free(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:23:50 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/12 23:06:46 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/14 22:18:51 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,23 @@ void	free_vdup(char **av)
 
 void	free_stack(t_stack *stack, int size)
 {
-	t_stack	*tmp;
+	t_stack	*next_node;
+	t_stack	*current;
 	int		i;
 
 	if (!stack)
 		return ;
 	i = 0;
-	while (i < size)
+	current = stack;
+	next_node = stack->next;
+	while (next_node != stack && i < size - 1)
 	{
-		tmp = stack;
-		stack = stack->next;
-		free(tmp);
+		free(current);
+		current = next_node;
+		next_node = current->next;
 		++i;
 	}
+	free(current);
 }
 
 void	error_free(t_data *data, char **av, int isa_duplicate)

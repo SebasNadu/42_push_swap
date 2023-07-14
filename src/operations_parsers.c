@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:33:43 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/13 15:34:47 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/14 23:00:44 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ static void	swap_parser(t_data *data, char *msg)
 	if (ft_strncmp(msg, "sa", 2) == 0)
 	{
 		if ((*data).a_size > 1)
-			swap(&(*data).stack_a);
+			swap(&(*data).stack_a, (*data).a_size);
 	}
 	else if (ft_strncmp(msg, "sb", 2) == 0)
 	{
 		if ((*data).b_size > 1)
-			swap(&(*data).stack_b);
+			swap(&(*data).stack_b, (*data).b_size);
 	}
 	else if (ft_strncmp(msg, "ss", 2) == 0)
 	{
 		if ((*data).a_size > 1 && (*data).b_size > 1)
 		{
-			swap(&(*data).stack_a);
-			swap(&(*data).stack_b);
+			swap(&(*data).stack_a, (*data).a_size);
+			swap(&(*data).stack_b, (*data).b_size);
 		}
 	}
 }

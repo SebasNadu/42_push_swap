@@ -6,11 +6,28 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:24:02 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/07 23:00:06 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/14 19:58:52 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	check_if_sorted(t_stack *stack, int size)
+{
+	int		i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = stack;
+	while (i < size -1)
+	{
+		if (tmp->data > tmp->next->data)
+			return (0);
+		tmp = tmp->next;
+		++i;
+	}
+	return (1);
+}
 
 int	check_if_int(char *str)
 {
@@ -28,7 +45,7 @@ int	check_if_int(char *str)
 	return (1);
 }
 
-int	check_if_rep(t_data data, int nbr)
+int	check_if_dup(t_data data, int nbr)
 {
 	t_stack	*stack;
 

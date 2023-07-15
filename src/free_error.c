@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:23:50 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/14 22:18:51 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/15 00:45:19 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_stack(t_stack *stack, int size)
 	t_stack	*current;
 	int		i;
 
-	if (!stack)
+	if (!stack || size == 0)
 		return ;
 	i = 0;
 	current = stack;

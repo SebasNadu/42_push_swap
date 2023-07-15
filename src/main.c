@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:45:28 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/14 23:37:35 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/15 15:54:12 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,27 @@ void	ft_stackiter(t_stack *stack, int size, void (*f)(int, int))
 		write(1, " nbr: ", 6);
 		f(stack->data, 1);
 		stack = stack->next;
+		++i;
+	}
+}
+
+void	ft_stackiter_rev(t_stack *stack, int size, void (*f)(int, int))
+{
+	int	i;
+
+	if (!stack || !f)
+		return ;
+	i = 0;
+	stack = stack->prev;
+	while (i < size)
+	{
+		write(1, "\noindex: ", 8);
+		f(stack->o_index, 1);
+		write(1, " uindex: ", 8);
+		f(stack->u_index, 1);
+		write(1, " nbr: ", 6);
+		f(stack->data, 1);
+		stack = stack->prev;
 		++i;
 	}
 }
@@ -54,12 +75,14 @@ int	main(int ac, char **av)
 	{
 		merge_sort(&data.stack_a, data.a_size, merge);
 		set_o_index(data.stack_a, data.a_size);
-		set_doub_link(data.stack_a, data.a_size);
+		set_doub_link(&data.stack_a, data.a_size);
 		merge_sort(&data.stack_a, data.a_size, merge_by_uindex);
-		set_doub_link(data.stack_a, data.a_size);
+		set_doub_circular_link(&data.stack_a, data.a_size);
 		push_swap(&data);
 	}
 	ft_stackiter(data.stack_a, data.a_size, (*ft_putnbr_fd));
+	ft_putstr_fd("\n", 1);
+	ft_stackiter_rev(data.stack_a, data.a_size, (*ft_putnbr_fd));
 	exit_free(&data);
 	return (0);
 }

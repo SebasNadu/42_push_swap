@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:54:32 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/15 16:00:10 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/16 22:50:40 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,52 @@ void	sort_five(t_data *data)
 	operations_parser(data, "pa");
 }
 
-void	binary_radix_sort(t_data *data, int bit)
+void	bit_sort(t_data *data, size_t bit_place)
 {
-	t_stack	*tmp;
-	int		i;
+	size_t	iter_length;
 
-	i = -1;
-	tmp = data->stack_a;
-	while (++i < data->a_size)
+	iter_length = data->a_size;
+	while (0 < iter_length)
 	{
-		if ((tmp->o_index >> bit) & 1)
+		if ((data->stack_a->o_index >> bit_place) & 1)
 			operations_parser(data, "ra");
 		else
 			operations_parser(data, "pb");
-		tmp = data->stack_a;
+		--iter_length;
 	}
+	iter_length = data->b_size;
+	while (0 < iter_length)
+	{
+		operations_parser(data, "pa");
+		--iter_length;
+	}
+}
+
+void	binary_radix_sort(t_data *data, size_t iter_length)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < iter_length)
+	{
+		if (check_if_sorted(data->stack_a, data->a_size))
+			break ;
+		bit_sort(data, i);
+		++i;
+	}
+}
+
+size_t	leftmost_bit(size_t nbr)
+{
+	size_t	i;
+
+	i = 0;
+	while (nbr)
+	{
+		nbr >>= 1;
+		++i;
+	}
+	return (i);
 }
 
 void	push_swap(t_data *data)
@@ -86,5 +117,6 @@ void	push_swap(t_data *data)
 	else if (data->a_size == 5)
 		sort_five(data);
 	else
-		binary_radix_sort(data, 0);
+		binary_radix_sort(data, leftmost_bit(
+				find_highest(data->stack_a, data->a_size)));
 }

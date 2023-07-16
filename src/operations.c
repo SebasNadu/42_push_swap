@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:18:57 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/15 15:55:12 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/16 22:37:34 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ static void	ft_stackadd_front(t_stack **stack, t_stack *new_node)
 	{
 		new_node->next = *stack;
 		new_node->prev = (*stack)->prev;
-		if (!(*stack)->prev)
-			(*stack)->next = new_node;
-		else
-			(*stack)->prev->next = new_node;
+		(*stack)->prev->next = new_node;
 		(*stack)->prev = new_node;
 		*stack = new_node;
 	}
@@ -74,6 +71,8 @@ void	push(t_stack **dest, t_stack **src, size_t *dest_size, size_t *src_size)
 		return ;
 	node_to_push = *src;
 	*src = (*src)->next;
+	if (*src == node_to_push)
+		*src = NULL;
 	if (*src)
 	{
 		(*src)->prev = node_to_push->prev;

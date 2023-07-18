@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:50:30 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/15 15:52:20 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/18 18:16:40 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_data(t_data *data)
 {
 	(*data).stack_a = NULL;
 	(*data).stack_b = NULL;
+	(*data).f_s = 0;
 	(*data).a_size = 0;
 	(*data).b_size = 0;
 }
@@ -65,4 +66,5 @@ void	stack_filler(t_data *data, char **av, int is_a_dup)
 			error_free(data, av, is_a_dup);
 		++i;
 	}
+	data->f_s = data->a_size;
 }

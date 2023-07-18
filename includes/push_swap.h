@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/15 15:58:51 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/18 17:47:51 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_data
 	t_stack	*stack_b;
 	size_t	a_size;
 	size_t	b_size;
+	size_t	f_s;
 }	t_data;
 
 // utils
@@ -65,7 +66,7 @@ t_stack	*merge(t_stack *left, t_stack *right);
 t_stack	*merge_by_uindex(t_stack *left, t_stack *right);
 
 // operations_parsers
-void	operations_parser(t_data *data, char *msg);
+size_t	operations_parser(t_data *data, char *msg);
 
 // operations
 void	push(t_stack **dest, t_stack **src, size_t *dest_size,
@@ -79,5 +80,24 @@ void	push_swap(t_data *data);
 // push_swap_utils
 size_t	find_lowest(t_stack *stack, int size);
 size_t	find_highest(t_stack *stack, int size);
+
+// test quick sort
+void	quick_sort_init(t_data *data, size_t low, size_t high);
+void	last_sort_b(t_data *data, size_t low, size_t high);
+void	last_sort_a(t_data *data, size_t low, size_t high);
+void	quick_sort_b(t_data *data, size_t high, size_t low, size_t is_end);
+void	quick_sort_a(t_data *data, size_t low, size_t high, size_t is_end);
+void	next_sort(t_data *data, size_t low, size_t high, size_t iws_end);
+void	twin_insert_sort(t_data *data, size_t low, size_t high);
+void	insert_sort_a(t_data *data, size_t high, size_t low);
+void	insert_sort_b(t_data *data, size_t high, size_t low);
+void	five_sort_a(t_data *data, size_t low, size_t high);
+void	three_sort(t_data *data, size_t low, size_t high);
+size_t	swap_bottoms(t_data *d, t_stack *s_a, t_stack *s_b);
+size_t	swap_tops(t_data *d, t_stack *s_a, t_stack *s_b);
+void	pusha_in_order(t_data *data, size_t index, size_t next);
+void	pushb_in_order(t_data *data, size_t index, size_t next);
+int		sorted_by(t_data *data, size_t is_a, size_t low);
+size_t	find_pos(t_stack *stack, size_t size, size_t index);
 
 #endif

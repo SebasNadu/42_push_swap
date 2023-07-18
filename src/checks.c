@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:24:02 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/14 19:58:52 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/18 18:11:33 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ int	check_if_dup(t_data data, int nbr)
 	if (data.a_size == 0)
 		return (0);
 	stack = data.stack_a;
-	while (stack)
+	while (stack->next)
 	{
 		if (stack->data == nbr)
 			return (1);
 		stack = stack->next;
 	}
+	if (stack->data == nbr)
+		return (1);
 	return (0);
 }

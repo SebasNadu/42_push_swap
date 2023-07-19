@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:50:30 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/18 18:16:40 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/19 13:53:08 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_data(t_data *data)
 	(*data).stack_a = NULL;
 	(*data).stack_b = NULL;
 	(*data).f_s = 0;
+	(*data).prev_op = "   ";
 	(*data).a_size = 0;
 	(*data).b_size = 0;
 }

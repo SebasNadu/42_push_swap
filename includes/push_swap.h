@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/18 17:47:51 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/19 13:46:18 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data
 	size_t	a_size;
 	size_t	b_size;
 	size_t	f_s;
+	char	*prev_op;
 }	t_data;
 
 // utils
@@ -76,6 +77,9 @@ void	swap(t_stack **stack, int size);
 
 // push_swap
 void	push_swap(t_data *data);
+void	sort_five(t_data *data);
+void	sort_four(t_data *data);
+void	sort_three(t_data *data);
 
 // push_swap_utils
 size_t	find_lowest(t_stack *stack, int size);
@@ -95,9 +99,15 @@ void	five_sort_a(t_data *data, size_t low, size_t high);
 void	three_sort(t_data *data, size_t low, size_t high);
 size_t	swap_bottoms(t_data *d, t_stack *s_a, t_stack *s_b);
 size_t	swap_tops(t_data *d, t_stack *s_a, t_stack *s_b);
-void	pusha_in_order(t_data *data, size_t index, size_t next);
-void	pushb_in_order(t_data *data, size_t index, size_t next);
+void	search_target_a(t_data *data, size_t index, size_t next);
+void	search_target_b(t_data *data, size_t index, size_t next);
 int		sorted_by(t_data *data, size_t is_a, size_t low);
 size_t	find_pos(t_stack *stack, size_t size, size_t index);
+
+// operations 2
+size_t	psh(t_data *data, char *msg);
+size_t	swp(t_data *data, char *msg, size_t sec);
+size_t	rot(t_data *data, char *msg, size_t sec);
+size_t	rrot(t_data *data, char *msg, size_t sec);
 
 #endif

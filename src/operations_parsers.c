@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:33:43 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/18 17:50:32 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/19 12:16:44 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static size_t	swap_parser(t_data *data, char *msg)
 		moves = 2;
 	}
 	return (moves);
+	data->prev_op = msg;
 }
 
 static size_t	rotate_parser(t_data *data, char *msg)
@@ -61,6 +62,7 @@ static size_t	rotate_parser(t_data *data, char *msg)
 		rotate(&(*data).stack_b, ft_strlen(msg) == 3);
 		moves = 2;
 	}
+	data->prev_op = msg;
 	return (moves);
 }
 
@@ -81,6 +83,7 @@ static size_t	push_parser(t_data *data, char *msg)
 			&(*data).b_size, &(*data).a_size);
 		moves++;
 	}
+	data->prev_op = msg;
 	return (moves);
 }
 

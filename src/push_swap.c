@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:54:32 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/19 14:47:06 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/19 16:16:15 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,7 @@ void	twin_insert_sort(t_data *data, size_t low, size_t high)
 	size_t	med;
 
 	med = low + ((high - low) / 2);
-	insert_sort_a(data, med + 1, low);
+	insert_sort_a(data, med + 1, high);
 	insert_sort_b(data, med, low);
 }
 
@@ -300,6 +300,9 @@ void	quick_sort_a(t_data *data, size_t low, size_t high, size_t is_end)
 		else
 			rot(data, "ra", 0);
 	}
+	ft_putstr_fd("b_size: ", 1);
+	ft_putnbr_fd(data->b_size, 1);
+	ft_putstr_fd("\n", 1);
 	if (data->b_size > 1 && data->stack_b->prev->o_index == med)
 		rrot(data, "rrb", 0);
 	while (data->a_size > 1 && data->stack_a->prev->o_index <= high

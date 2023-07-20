@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:54:32 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/19 16:16:15 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/20 20:15:07 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,16 +112,16 @@ size_t	swap_tops(t_data *d, t_stack *s_a, t_stack *s_b)
 	size_t	moves;
 
 	moves = 0;
-	if ((d->a_size >= 2 && s_a->o_index > s_a->next->o_index)
-		&& (d->b_size >= 2 && s_b->o_index < s_b->next->o_index))
-		moves = operations_parser(d, "ss");
-	else
-	{
+	// if ((d->a_size >= 2 && s_a->o_index > s_a->next->o_index)
+	// 	&& (d->b_size >= 2 && s_b->o_index < s_b->next->o_index))
+	// 	moves = operations_parser(d, "ss");
+	// else
+	// {
 		if ((d->a_size >= 2 && s_a->o_index > s_a->next->o_index))
 			moves = swp(d, "sa", 1);
 		if ((d->b_size >= 2 && s_b->o_index < s_b->next->o_index))
 			moves = swp(d, "sb", 1);
-	}
+	// }
 	return (moves);
 }
 
@@ -130,15 +130,15 @@ size_t	swap_bottoms(t_data *d, t_stack *s_a, t_stack *s_b)
 	size_t	moves;
 
 	moves = 0;
-	if ((d->a_size >= 2 && s_a->o_index > s_a->prev->o_index && s_a->o_index
-			< s_a->next->o_index) && (d->b_size >= 2 && s_b->o_index
-			< s_b->prev->o_index && s_a->o_index > s_a->next->o_index))
-		moves += operations_parser(d, "rrr");
-	else if ((d->a_size >= 2 && s_a->o_index > s_a->prev->o_index)
-		&& (d->b_size >= 2 && s_b->o_index < s_b->prev->o_index))
-		moves += operations_parser(d, "rr");
-	else
-	{
+	// if ((d->a_size >= 2 && s_a->o_index > s_a->prev->o_index && s_a->o_index
+	// 		< s_a->next->o_index) && (d->b_size >= 2 && s_b->o_index
+	// 		< s_b->prev->o_index && s_a->o_index > s_a->next->o_index))
+	// 	moves += operations_parser(d, "rrr");
+	// else if ((d->a_size >= 2 && s_a->o_index > s_a->prev->o_index)
+	// 	&& (d->b_size >= 2 && s_b->o_index < s_b->prev->o_index))
+	// 	moves += operations_parser(d, "rr");
+	// else
+	// {
 		if (d->a_size >= 2 && s_a->o_index > s_a->prev->o_index
 			&& s_a->o_index < s_a->next->o_index)
 			moves += rrot(d, "rra", 1);
@@ -149,7 +149,7 @@ size_t	swap_bottoms(t_data *d, t_stack *s_a, t_stack *s_b)
 			moves += rot(d, "ra", 1);
 		if (d->b_size >= 2 && s_b->o_index < s_b->prev->o_index)
 			moves += rot(d, "rb", 1);
-	}
+	// }
 	return (moves);
 }
 
@@ -229,9 +229,14 @@ void	insert_sort_a(t_data *data, size_t low, size_t high)
 {
 	size_t	index;
 	size_t	pushes;
+	size_t	b_i;
 
+	if (data->b_size == 0)
+		b_i = 0;
+	else
+		b_i = data->stack_b->o_index;
 	pushes = 0;
-	while (data->a_size > 5 && (data->b_size == 0 || data->stack_b->o_index < high)
+	while (data->a_size > 5 && b_i < high
 		&& !sorted_by(data, 1, data->a_size - 1 - high - low - pushes))
 	{
 		index = low + pushes;
@@ -247,13 +252,19 @@ void	insert_sort_a(t_data *data, size_t low, size_t high)
 		three_sort(data, low, high);
 		if (data->stack_b->o_index == index + 1)
 			++pushes;
+		b_i = data->stack_b->o_index;
 	}
 	if (data->a_size <= 5 && !sorted_by(data, 1, data->a_size))
 	{
 		five_sort_a(data, low + pushes, high);
 	}
 	while (pushes--)
+	{
+		ft_putstr_fd("pushes: ", 1);
+		ft_putnbr_fd(pushes, 1);
+		ft_putstr_fd("\n", 1);
 		psh(data, "pa");
+	}
 }
 
 void	twin_insert_sort(t_data *data, size_t low, size_t high)
@@ -275,7 +286,7 @@ void	next_sort(t_data *data, size_t low, size_t high, size_t is_end)
 	else
 		quick_sort_a(data, med + 1, high, is_end);
 	if (!is_end && data->b_size)
-		quick_sort_b(data, low, med, is_end);
+		quick_sort_b(data, med, low, is_end);
 }
 
 void	quick_sort_a(t_data *data, size_t low, size_t high, size_t is_end)
@@ -300,9 +311,6 @@ void	quick_sort_a(t_data *data, size_t low, size_t high, size_t is_end)
 		else
 			rot(data, "ra", 0);
 	}
-	ft_putstr_fd("b_size: ", 1);
-	ft_putnbr_fd(data->b_size, 1);
-	ft_putstr_fd("\n", 1);
 	if (data->b_size > 1 && data->stack_b->prev->o_index == med)
 		rrot(data, "rrb", 0);
 	while (data->a_size > 1 && data->stack_a->prev->o_index <= high
@@ -337,22 +345,28 @@ void	quick_sort_b(t_data *data, size_t high, size_t low, size_t is_end)
 
 void	last_sort_a(t_data *data, size_t low, size_t high)
 {
+	size_t	med;
+
+	med = low + ((high - low) / 2);
 	if (high - low <= 15)
 		insert_sort_a(data, low, high);
 	else
 		quick_sort_a(data, low, high, 1);
 	if (data->b_size && high - low > 31)
-		quick_sort_b(data, low, high, 1);
+		quick_sort_b(data, med, low, 1);
 }
 
 void	last_sort_b(t_data *data, size_t low, size_t high)
 {
+	size_t	med;
+
+	med = low + ((high - low) / 2);
 	if (high - low <= 15)
-		insert_sort_b(data, low, high);
+		insert_sort_b(data, high, low);
 	else
-		quick_sort_b(data, low, high, 1);
+		quick_sort_b(data, high, low, 1);
 	if (data->b_size && high - low > 31)
-		quick_sort_b(data, low, high, 1);
+		quick_sort_b(data, med, low, 1);
 }
 
 void	quick_sort_init(t_data *data, size_t low, size_t high)

@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:24:38 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/19 16:23:13 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/20 17:25:31 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 size_t	psh(t_data *data, char *msg)
 {
-	if (data->b_size && ft_strncmp(msg, "pa", 2) == 0)
-		// && ft_strncmp(data->prev_op, "pb", 2) != 0)
+	if (data->b_size && ft_strncmp(msg, "pa", 2) == 0
+		&& ft_strncmp(data->prev_op, "pb", 2) != 0)
 	{
 		return (operations_parser(data, "pa"));
 	}
-	if (data->a_size && ft_strncmp(msg, "pb", 2) == 0)
-		// && ft_strncmp(data->prev_op, "pa", 2) != 0)
+	if (data->a_size && ft_strncmp(msg, "pb", 2) == 0
+		&& ft_strncmp(data->prev_op, "pa", 2) != 0)
 		return (operations_parser(data, "pb"));
 	return (0);
 }

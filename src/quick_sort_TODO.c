@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort_incomp.c                                :+:      :+:    :+:   */
+/*   quick_sort_TODO.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:54:32 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/21 12:11:54 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/24 11:32:19 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "../includes/push_swap.h"
 
 size_t	find_pos(t_stack *stack, size_t size, size_t index)
@@ -398,4 +398,4 @@ void	quick_sort_init(t_data *data, size_t low, size_t high)
 	quick_sort_a(data, med + 1, high, 0);
 	quick_sort_b(data, med, s_med + 1, 0);
 	quick_sort_b(data, s_med, low, 0);
-}
+} */

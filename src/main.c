@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:45:28 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/24 10:36:10 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/24 11:10:57 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,6 @@ int	main(int ac, char **av)
 		set_doub_circular_link(&data.stack_a, data.a_size);
 		push_swap(&data);
 	}
-	// ft_stackiter(data.stack_a, data.a_size, (*ft_putnbr_fd));
-	// ft_putstr_fd("\n", 1);
-	// ft_stackiter(data.stack_b, data.b_size, (*ft_putnbr_fd));
-	// ft_stackiter_rev(data.stack_a, data.a_size, (*ft_putnbr_fd));
 	exit_free(&data);
 	return (0);
 }

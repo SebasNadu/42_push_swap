@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:24:02 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/18 18:11:33 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/07/21 12:14:28 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	check_if_sorted(t_stack *stack, int size)
 	int		i;
 	t_stack	*tmp;
 
+	if (!stack)
+		return (0);
 	i = 0;
 	tmp = stack;
 	while (i < size -1)

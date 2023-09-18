@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 12:20:55 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/24 11:20:18 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/09/18 15:52:14 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	push_swap(t_data *data)
 	else if (data->a_size == 5)
 		sort_five(data);
 	else
-		binary_radix_sort(data, leftmost_bit(data->a_size - 1));
+		greedy_sort(data);
 }

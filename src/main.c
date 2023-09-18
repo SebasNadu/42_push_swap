@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:45:28 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/24 11:10:57 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/09/18 16:26:45 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ac < 2 || (ac == 2 && !av[1][0]))
-		return (1);
+		return (0);
 	else if (ac == 2)
 		av = ft_split_argv(av[1], ' ');
 	init_data(&data);

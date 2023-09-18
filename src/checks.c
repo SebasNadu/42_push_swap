@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:24:02 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/21 12:14:28 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/09/18 16:15:32 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	check_if_int(char *str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		++i;
+	if (!str[i])
+		return (0);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

@@ -6,7 +6,7 @@
 #    By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 19:18:38 by sebasnadu         #+#    #+#              #
-#    Updated: 2023/07/24 15:09:37 by sebasnadu        ###   ########.fr        #
+#    Updated: 2023/09/17 20:01:03 by sebasnadu        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ LFT_FLAGS	= -L $(LIBFT_DIR) -lft
 
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-# CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+# CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 RM			= rm -f
 PRINTF 		= printf
 
@@ -64,7 +64,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 clean:
 	@$(PRINTF) "$(CYAN)Cleaning up object files in $(DIR_OBJS)...$(DEFAULT)\n"
-	@make fclean -C $(LIBFT_DIR)
+	@make clean -C $(LIBFT_DIR)
 	@$(RM) $(OBJS)
 	@$(RM) -r $(DIR_OBJS)
 

@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 19:54:36 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/07/24 11:22:30 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/09/18 15:51:59 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ void	swap(t_stack **stack, int size);
 
 // push_swap
 void	push_swap(t_data *data);
+void	sort_three(t_data *data);
+void	sort_four(t_data *data);
+void	sort_five(t_data *data);
 
 // radix_sort
 void	binary_radix_sort(t_data *data, size_t iter_length);
@@ -87,30 +90,18 @@ size_t	find_highest(t_stack *stack, int size);
 size_t	leftmost_bit(size_t nbr);
 int		find_ordered(t_stack *stack, size_t size, char c);
 
-// TOCOMPLETE quick sort
-void	quick_sort_init(t_data *data, size_t low, size_t high);
-void	last_sort_b(t_data *data, size_t low, size_t high);
-void	last_sort_a(t_data *data, size_t low, size_t high);
-void	quick_sort_b(t_data *data, size_t high, size_t low, size_t is_end);
-void	quick_sort_a(t_data *data, size_t low, size_t high, size_t is_end);
-void	next_sort(t_data *data, size_t low, size_t high, size_t iws_end);
-void	twin_insert_sort(t_data *data, size_t low, size_t high);
-void	insert_sort_a(t_data *data, size_t high, size_t low);
-void	insert_sort_b(t_data *data, size_t high, size_t low);
-void	five_sort_a(t_data *data, size_t low, size_t high);
-void	three_sort(t_data *data, size_t low, size_t high);
-size_t	swap_bottoms(t_data *d, t_stack *s_a, t_stack *s_b);
-size_t	swap_tops(t_data *d, t_stack *s_a, t_stack *s_b);
-void	search_target_a(t_data *data, size_t index, size_t next);
-void	search_target_b(t_data *data, size_t index, size_t next);
-int		sorted_by(t_data *data, size_t is_a, size_t low);
-size_t	find_pos(t_stack *stack, size_t size, size_t index);
+// greedy_sort
+void	greedy_sort(t_data *data);
 
-// TOCOMPLETE operations 2
-size_t	psh(t_data *data, char *msg);
-size_t	swp(t_data *data, char *msg, size_t sec);
-size_t	rot(t_data *data, char *msg, size_t sec);
-size_t	rrot(t_data *data, char *msg, size_t sec);
+// greedy_sort_controller
+void	get_min_rotate(t_data *data, int *a, int *b);
+void	rotate_same(t_data *data, int *a, int *b);
+void	rotate_b(t_data *data, int b);
+void	rotate_a(t_data *data, int a);
+
+// greedy_sort_utils
+int		set_a_pos(int num, t_data *data);
+int		set_over_pos(t_data *data);
 
 // test
 void	ft_stackiter(t_stack *stack, int size, void (*f)(int, int));

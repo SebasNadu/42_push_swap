@@ -6,7 +6,7 @@
 #    By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 19:18:38 by sebasnadu         #+#    #+#              #
-#    Updated: 2023/10/05 19:27:31 by johnavar         ###   ########.fr        #
+#    Updated: 2023/10/06 22:05:22 by sebasnadu        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ LFT_FLAGS	= -L $(LIBFT_DIR) -lft
 
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 CC			= cc
-CLAGS		= -Wall -Wextra -Werror
-#CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+# CLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 RM			= rm -f
 PRINTF 		= printf
 

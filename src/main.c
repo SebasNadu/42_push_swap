@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:45:28 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/10/05 19:26:50 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/10/07 14:20:37 by sebasnadu        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exit_free(t_data *data)
 	free_stack(data->stack_b, data->b_size);
 }
 
-int	main(int ac, char **av)
+int	main(int ac, char *av[])
 {
 	t_data	data;
 

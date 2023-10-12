@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:50:30 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/10/07 14:14:32 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/10/12 15:48:51 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	stack_filler(t_data *data, char **av, int is_a_dup)
 	long	nbr;
 	int		i;
 
-	i = 0;
+	i = 1;
+	if (av == NULL)
+		return ;
 	while (av[i])
 	{
 		if (!check_if_int(av[i]))
@@ -63,7 +65,7 @@ void	stack_filler(t_data *data, char **av, int is_a_dup)
 			error_free(data, av, is_a_dup);
 		if (check_if_dup(*data, (int)nbr))
 			error_free(data, av, is_a_dup);
-		if (!append_node(data, (int)nbr, i))
+		if (!append_node(data, (int)nbr, i - 1))
 			error_free(data, av, is_a_dup);
 		++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:23:50 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/10/08 12:10:50 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/10/12 16:57:41 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@ void	free_vdup(char **av)
 {
 	int	i;
 
-	i = 0;
-	free(av[0]);
-	while (av[++i])
+	i = 1;
+	while (av[i])
+	{
 		free(av[i]);
+		av[i] = NULL;
+		i++;
+	}
+	free(av);
+	av = NULL;
 }
 
 void	free_stack(t_stack *stack, int size)

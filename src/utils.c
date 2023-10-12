@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 13:25:04 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/10/05 19:26:42 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:08:32 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,8 @@ char	**ft_split_argv(char *str, char separator)
 	{
 		if (i == 0)
 		{
-			strv[i] = malloc(1 * sizeof(char));
-			if (strv[i] == NULL)
-				return (NULL);
-			strv[i++][0] = '\0';
+			strv[0] = NULL;
+			i++;
 			continue ;
 		}
 		strv[i++] = get_next_word(str, separator);

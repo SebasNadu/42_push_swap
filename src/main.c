@@ -6,7 +6,7 @@
 /*   By: sebasnadu <johnavar@student.42berlin.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:45:28 by sebasnadu         #+#    #+#             */
-/*   Updated: 2023/10/07 14:20:37 by sebasnadu        ###   ########.fr       */
+/*   Updated: 2023/10/12 16:54:37 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,18 @@ void	exit_free(t_data *data)
 	free_stack(data->stack_b, data->b_size);
 }
 
-int	main(int ac, char *av[])
+int	main(int ac, char **argv)
 {
 	t_data	data;
+	char	**av;
 
+	av = argv;
 	if (ac < 2 || (ac == 2 && !av[1][0]))
 		return (0);
 	else if (ac == 2)
 		av = ft_split_argv(av[1], ' ');
 	init_data(&data);
-	stack_filler(&data, av + 1, ac == 2);
+	stack_filler(&data, av, ac == 2);
 	if (ac == 2)
 		free_vdup(av);
 	if (!check_if_sorted(data.stack_a, data.a_size))

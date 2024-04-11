@@ -1,4 +1,6 @@
-# push_swap
+<picture>
+	<img alt="libft" src="https://github.com/SebasNadu/42_push_swap/assets/98430438/7f67ff88-5828-436c-aa50-a2dc7ec71564">
+</picture>
 
 ## About the project
 
@@ -81,3 +83,12 @@ At the end I left only 5 numbers in the stack a, which I then sorted. Now it's t
 The objective now is to push the numbers from the stack b to the stack a in the correct order. To achieve this, first we need to find the most efficient sequence of instructions, setting up the numbers of operations from each number of the stack b to the stack a, and taking the efficient one in the function get_min_rotate.
 
 Then rotate the stack a and b to the correct position with the functions rotate_same, rotate_a, and rotate_b. And finally push the numbers to the stack a. The loop continues until the stack b is empty.
+
+<picture>
+	<img alt="libft" src="https://github.com/SebasNadu/42_push_swap/assets/98430438/b4cf1eca-96b2-45a9-ad32-62d9aeb03cb9">
+</picture>
+
+### Note
+
+The implementations of radix sort and greedy sort are both in the source code. You can change the algorithm to radix sort if you want to test it. In the file push_swap.c, inside the function push_swap, change the function greedy_sort to binary_radix_sort and that's it.
+
